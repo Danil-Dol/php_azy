@@ -2,8 +2,10 @@
 
 namespace App;
 
-class Student extends Person
+class Student implements StudentInrerface, PlayerInterface //class Student extends Person // extends - аналог двоеточия в C#
 {
+    use HasRest;//используем трейт
+
     public string $name;
     protected int $age;
     public array $marks;
@@ -15,9 +17,24 @@ class Student extends Person
         $this->marks = $marks;
     }
 
+    public function __destruct()
+    {
+        print("Buy");
+    }
+
     public function study() :void
     {
         print(" Я учусь");
+    }
+
+    public function takeExam(): int
+    {
+        return 5;
+    }
+
+    public function play(): void
+    {
+        print("<p>Я играю</p>");
     }
 
     public function addMark(int $mark) :self
